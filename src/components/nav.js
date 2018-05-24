@@ -17,12 +17,21 @@ class Nav extends Component{
                         <Link to='/operative-list'>Operative List</Link>
                     </li> 
                     <li>
-                        <button className="btn grey" onClick={()=>changeAuth(false)}>Sign Out</button>
+                        <Link to='/sign-out'>Sign Out</Link>
                  </li>
                  </Fragment>
             );
         }
-        return( <li><button  className="btn grey" onClick={()=> changeAuth(true)}>Sign In</button></li>);
+        return( 
+        <Fragment>
+            <li>
+                <Link className="btn blue-grey lighten-2 white-text" to='/sign-in'>Sign In</Link>
+            </li>
+            <li>
+                <Link  className="btn blue-grey lighten-2 white-text" to='/sign-up'>Sign Up</Link>
+            </li>
+        </Fragment>     
+        );
     }
     render(){
         return(

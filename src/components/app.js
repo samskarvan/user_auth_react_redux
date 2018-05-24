@@ -6,6 +6,7 @@ import Nav from './nav';
 import About from './about';
 import SecretDoc from './secret_doc';
 import OpList from './operative_list';
+import SignUp from './sign_up';
 import auth from '../hoc/auth';
 
 
@@ -17,6 +18,7 @@ const App = () => (
             <Route path ='/about' component = {About}/>
             <Route path ='/secret-doc' component = {auth(SecretDoc)}/>
             <Route path ='/operative-list' component = {OpList}/>
+            <Route path='/sign-up' component={SignUp}/>
         </div>
     </div>
 );

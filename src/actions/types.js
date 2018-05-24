@@ -1,6 +1,5 @@
 export default {
-    CHANGE_AUTH: 'change_auth'
+    CHANGE_AUTH: 'change_auth',
+    SIGN_UP: 'sign_up'
 }
 
-
-///npm install --save react-router-dom
