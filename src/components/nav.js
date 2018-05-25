@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {changeAuth} from '../actions';
+import {signOut} from '../actions';
 import auth from '../hoc/auth';
 
 class Nav extends Component{
     renderLinks(){
-        const {auth, changeAuth} = this.props;
+        const {auth, signOut} = this.props;
         if(auth){
             return(
                 <Fragment>
@@ -17,8 +17,11 @@ class Nav extends Component{
                         <Link to='/operative-list'>Operative List</Link>
                     </li> 
                     <li>
-                        <Link to='/sign-out'>Sign Out</Link>
-                 </li>
+                        <Link to='/movie-quote'>Movie Quote</Link>
+                    </li>
+                    <li>
+                        <button onClick={signOut} className="btn blue-grey lighten-2 white-text">Sign Out</button>
+                    </li>
                  </Fragment>
             );
         }
@@ -60,4 +63,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {changeAuth})(Nav);
+export default connect(mapStateToProps, {signOut})(Nav);

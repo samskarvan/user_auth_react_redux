@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {connect} from 'react-redux';
-import {signUp, clearAuthError} from '../actions';
+import {signIn, clearAuthError} from '../actions';
 import {renderInput} from '../helpers';
 
 
-class SignUp extends Component{
-    handleSignUp(values){
-        this.props.signUp(values);
+class SignIn extends Component{
+    handleSignIn(values){
+        this.props.signIn(values);
     }
     
     componentWillUnmount(){
         this.props.clearAuthError();
     }
+
     render(){
         const {handleSubmit, authError} = this.props;
         return(
@@ -20,14 +21,13 @@ class SignUp extends Component{
             <div className="col s8 offset-s2">
                 <div style={{margin: '10% 0'}}className="card blue lighten-5">
                     <div className="card-content">
-                    <span className="card-title">Enter your Info</span>
-                    <form onSubmit={handleSubmit(this.handleSignUp.bind(this))}>
+                    <span className="card-title">Sign In</span>
+                    <form onSubmit={handleSubmit(this.handleSignIn.bind(this))}>
                         <Field name="email" label="Email" component={renderInput}/>
                         <Field name="password" label="Password" component={renderInput} type="password"/>
-                        <Field name="confirmPassword" label="Confirm Password" component={renderInput} type="password"/>
                         <div className="row right-align">
-                        <button style={{marginLeft:'10%'}} className="btn blue-grey lighten-3 white-text">Sign Up</button>
-                        <p className="right-align red-text text-darken-2">{authError}</p>
+                        <button style={{marginLeft:'10%'}} className="btn blue-grey lighten-3 white-text">Sign In</button>
+                        <p className="right-align red-text">{authError}</p>
                         </div>
                     </form>
                     </div>
@@ -39,7 +39,7 @@ class SignUp extends Component{
 } 
 
 function validateInputs(values){
-    const {email, password, confirmPassword} = values;
+    const {email, password} = values;
     const errors = {};
     if(!email){
         errors.email = 'Please enter a valid email address';
@@ -49,22 +49,17 @@ function validateInputs(values){
         errors.password = 'Please enter a valid password';
     }
 
-    if(password !==confirmPassword){
-        errors.confirmPassword = 'Passwords do not match';
-    }
-
     return errors
 }
 
-SignUp = reduxForm({
-    form: 'sign-up',
+SignIn = reduxForm({
+    form: 'sign-in',
     validate: validateInputs
-})(SignUp)
-
+})(SignIn)
 
 function mstp(state){
     return{
         authError: state.user.error
     }
 }
-export default connect(mstp, {signUp, clearAuthError})(SignUp);
+export default connect(mstp, {signIn, clearAuthError})(SignIn);
